@@ -42,11 +42,10 @@ const decorateUserData = (details) => {
           <p><strong>Email:${details.email ? details.email : ''}</strong></p>
           <p><strong>Followers:${details.followers}</strong></p>
           <p><strong>Following:${details.following }</strong></p>
-          <p><strong>Public Repos:${details.public_repo}</strong></p>
+          <p><strong>Public Repos:${details.public_repo ? details.public_repo : ''}</strong></p>
           <p><strong>Bio:${details.bio ? details.bio : ''}</strong></p>
         </div>
 
-        <!-- Repositories List (Sample Placeholder) -->
       </div>`
       showData.innerHTML = data;
 
@@ -72,9 +71,7 @@ searchBtn.addEventListener('click', (e) => {
 })
 
 
-fetchUserData('sudipbiswas1224').then(data=>{
-  decorateUserData(data);
-})
+
 
 
 
