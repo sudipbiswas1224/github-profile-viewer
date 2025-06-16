@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-gray-100">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GitHub Profile Viewer</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen flex items-center justify-center px-4 py-10 bg-[#333446]">
+    <div
+      class="w-full max-w-3xl bg-white shadow-xl rounded-3xl overflow-hidden border border-gray-200"
+    >
+      <div class=" main bg-[#7F8CAA] p-8">
+        <h1 class="text-[#EAEFEF] text-3xl font-bold text-center">
+          GitHub Profile Viewer
+        </h1>
+        <form class="mt-6 flex flex-col sm:flex-row gap-4">
+          <input
+            type="text"
+            name="username"
+            placeholder="Enter GitHub username"
+            class="input-text w-full px-4 py-3 rounded-xl text-[#EAEFEF] placeholder-[#EAEFEF] focus:outline-none focus:ring-1 focus:ring-white border border-white"
+            required
+          />
+          <button
+            type="submit"
+            class="search-btn text-white bg-gray-400 font-semibold px-6 py-3 rounded-xl hover:bg-gray-500 transition w-full sm:w-auto"
+          >
+            Search
+          </button>
+        </form>
+
+        <div class="show-data"></div>
+      </div>
+      
+      <!-- Profile Result (Replace placeholders with server-side values) -->
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
