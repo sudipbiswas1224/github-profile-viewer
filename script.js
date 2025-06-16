@@ -5,22 +5,22 @@ const showData = document.querySelector('.show-data')
 
 
 function fetchUserData(username) {
-    return fetch(`https://api.github.com/users/${username}`).then((raw) => {
-        if (!raw.ok) throw new Error("User not found")
-        return raw.json();
-    })
+  return fetch(`https://api.github.com/users/${username}`).then((raw) => {
+    if (!raw.ok) throw new Error("User not found")
+    return raw.json();
+  })
 }
 function fetchUserRepo(username) {
-    return fetch(`https://api.github.com/users/${username}/repos?sort=updated`).then((raw) => {
-        if (!raw.ok) throw new Error('User not found')
-        return raw.json();
-    })
+  return fetch(`https://api.github.com/users/${username}/repos?sort=updated`).then((raw) => {
+    if (!raw.ok) throw new Error('User not found')
+    return raw.json();
+  })
 }
 
 
 const decorateUserData = (details) => {
-    console.log(details);
-    let data = `<div class="p-8">
+  console.log(details);
+  let data = `<div class="p-8">
         <!-- Profile Header -->
         <div class="flex items-center gap-6">
           <div class="w-24 h-24 rounded-full bg-gray-200 overflow-hidden border">
@@ -41,31 +41,34 @@ const decorateUserData = (details) => {
           <p><strong>Location:${details.location ? details.location : ''}</strong></p>
           <p><strong>Email:${details.email ? details.email : ''}</strong></p>
           <p><strong>Followers:${details.followers}</strong></p>
-          <p><strong>Following:${details.following }</strong></p>
+          <p><strong>Following:${details.following}</strong></p>
           <p><strong>Public Repos:${details.public_repo ? details.public_repo : ''}</strong></p>
           <p><strong>Bio:${details.bio ? details.bio : ''}</strong></p>
         </div>
 
       </div>`
-      showData.innerHTML = data;
+  showData.innerHTML = data;
 
 }
 
 //taking the input from the input bar 
 searchBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    let username = usernameInput.value.trim();
-    usernameInput.value = ''
+  e.preventDefault();
+  let username = usernameInput.value.trim();
+  usernameInput.value = ''
 
-    if (username.length > 0) {
-        fetchUserData(username).then(data => {
-            decorateUserData(data);
-            console.log(data);
-        })
-    }
-    else {
-        alert("Username can't be empty");
-    }
+  if (username.length > 0) {
+    fetchUserData(username).then(data => {
+      decorateUserData(data);
+      console.log(data);
+    })
+    .catch(err => {
+      showData.innerHTML = `<div class="text-red-400 text-lg font-semibold p-4">User not found</div>`;
+    })
+  }
+  else {
+    alert("Username can't be empty");
+  }
 
 
 })
